@@ -21,6 +21,8 @@
 		C48DEDAB17D688FD009C3CCF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C48DED8D17D688FD009C3CCF /* UIKit.framework */; };
 		C48DEDB317D688FD009C3CCF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C48DEDB117D688FD009C3CCF /* InfoPlist.strings */; };
 		C48DEDB517D688FD009C3CCF /* IgnitePickerViewDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C48DEDB417D688FD009C3CCF /* IgnitePickerViewDemoTests.m */; };
+		C48DEDC117D68932009C3CCF /* IgnitePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C48DEDC017D68932009C3CCF /* IgnitePickerView.m */; };
+		C48DEDC517D694F2009C3CCF /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C48DEDC417D694F2009C3CCF /* Social.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +55,10 @@
 		C48DEDB017D688FD009C3CCF /* IgnitePickerViewDemoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "IgnitePickerViewDemoTests-Info.plist"; sourceTree = "<group>"; };
 		C48DEDB217D688FD009C3CCF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C48DEDB417D688FD009C3CCF /* IgnitePickerViewDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IgnitePickerViewDemoTests.m; sourceTree = "<group>"; };
+		C48DEDBF17D68932009C3CCF /* IgnitePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IgnitePickerView.h; path = IgnitePickerView/IgnitePickerView.h; sourceTree = "<group>"; };
+		C48DEDC017D68932009C3CCF /* IgnitePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IgnitePickerView.m; path = IgnitePickerView/IgnitePickerView.m; sourceTree = "<group>"; };
+		C48DEDC217D6947F009C3CCF /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
+		C48DEDC417D694F2009C3CCF /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +66,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C48DEDC517D694F2009C3CCF /* Social.framework in Frameworks */,
 				C48DED8C17D688FD009C3CCF /* CoreGraphics.framework in Frameworks */,
 				C48DED8E17D688FD009C3CCF /* UIKit.framework in Frameworks */,
 				C48DED8A17D688FD009C3CCF /* Foundation.framework in Frameworks */,
@@ -82,6 +89,7 @@
 		C48DED7D17D688FD009C3CCF = {
 			isa = PBXGroup;
 			children = (
+				C48DEDBE17D68908009C3CCF /* New Group */,
 				C48DED8F17D688FD009C3CCF /* IgnitePickerViewDemo */,
 				C48DEDAE17D688FD009C3CCF /* IgnitePickerViewDemoTests */,
 				C48DED8817D688FD009C3CCF /* Frameworks */,
@@ -101,6 +109,8 @@
 		C48DED8817D688FD009C3CCF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C48DEDC417D694F2009C3CCF /* Social.framework */,
+				C48DEDC217D6947F009C3CCF /* Twitter.framework */,
 				C48DED8917D688FD009C3CCF /* Foundation.framework */,
 				C48DED8B17D688FD009C3CCF /* CoreGraphics.framework */,
 				C48DED8D17D688FD009C3CCF /* UIKit.framework */,
@@ -150,6 +160,15 @@
 				C48DEDB117D688FD009C3CCF /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C48DEDBE17D68908009C3CCF /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+				C48DEDBF17D68932009C3CCF /* IgnitePickerView.h */,
+				C48DEDC017D68932009C3CCF /* IgnitePickerView.m */,
+			);
+			name = "New Group";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -251,6 +270,7 @@
 			files = (
 				C48DEDA017D688FD009C3CCF /* ViewController.m in Sources */,
 				C48DED9A17D688FD009C3CCF /* AppDelegate.m in Sources */,
+				C48DEDC117D68932009C3CCF /* IgnitePickerView.m in Sources */,
 				C48DED9617D688FD009C3CCF /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
