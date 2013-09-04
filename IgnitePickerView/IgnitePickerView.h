@@ -32,6 +32,8 @@
 // Background color for the table view
 @property (nonatomic, strong) UIColor *backgroundColor;
 @property (nonatomic, strong) UIColor *framingColor;
+@property (nonatomic, strong) UIFont  *normalFont;
+@property (nonatomic, strong) UIFont  *selectedFont;
 
 // Delegate
 @property (nonatomic, weak) id <IgnitePickerViewDelegate> delegate;

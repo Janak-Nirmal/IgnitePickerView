@@ -31,6 +31,8 @@
     ignitePickerView.dataSource = self;
     ignitePickerView.backgroundColor = [UIColor clearColor];
     ignitePickerView.framingColor = [UIColor colorWithRed:114.0/255.0 green:11.0/255.0 blue:58.0/255.0 alpha:1.0];
+    ignitePickerView.normalFont = [UIFont fontWithName:@"Helvetica" size:24];
+    ignitePickerView.selectedFont = [UIFont fontWithName:@"Helvetica" size:30];
     [ignitePickerView selectRow:3];
     //--------
     

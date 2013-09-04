@@ -32,21 +32,22 @@
         self.cellResized = NO;
         _tableView.backgroundView = nil;
         [_tableView setOpaque:YES];
-		self.overlayCell = [[UIView alloc] initWithFrame:CGRectMake(0.0, 45.0, self.frame.size.width, 40.0)];
-		self.overlayCell.backgroundColor = [UIColor blackColor];
+        self.overlayCell = [[UIView alloc] initWithFrame:CGRectMake(0.0, 45.0, self.frame.size.width, 40.0)];
 		self.overlayCell.userInteractionEnabled = NO;
-		//self.overlayCell.alpha = 0.7;
+		
         
         self.overlayTop = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.frame.size.width, 40.0)];
-		//self.overlayTop.backgroundColor = [UIColor blackColor];
 		self.overlayTop.userInteractionEnabled = NO;
-		//self.overlayTop.alpha = 0.7;
+
         
         self.overlayBottom = [[UIView alloc] initWithFrame:CGRectMake(0.0, 90.0, self.frame.size.width, 40.0)];
-		self.overlayBottom.backgroundColor = [UIColor blackColor];
 		self.overlayBottom.userInteractionEnabled = NO;
-		self.overlayBottom.alpha = 0.7;
+
+
         self.superview.userInteractionEnabled = YES;
+        self.normalFont = [UIFont fontWithName:@"Helvetica" size:24];
+        self.selectedFont = [UIFont fontWithName:@"Helvetica" size:30];
+
         [_tableView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew context:nil];
         
     }
@@ -57,37 +58,29 @@
 {
     if ([keyPath isEqualToString:@"contentOffset"]) {
         
+        CGFloat rowHeight = [self.delegate rowHeightForIgnitePickerView:self];
         
+        //Observer will update offset each time user touches picker. We want to offset to be an y point in the middle of each row.
         CGFloat offset = [[change objectForKey:NSKeyValueChangeNewKey] CGPointValue].y;
-        NSLog(@"offset y %f",offset);
+        offset = offset +(rowHeight/2);
+        // temporary index of a cell we will be editing. We're casting float to integer to get
         NSInteger *tempCellNumber;
-        tempCellNumber = (NSInteger*)((NSInteger)offset / 45);
-        
+        tempCellNumber = (NSInteger*)((NSInteger)offset / (NSInteger)rowHeight);
+        float modulo = fmodf(offset, rowHeight);
+        NSLog(@"modulo %f",modulo);
         NSInteger cellCenter;
-        cellCenter = (NSInteger)tempCellNumber * (NSInteger)45;
+        cellCenter = (NSInteger)tempCellNumber * (NSInteger)rowHeight;
         
-        
-        
-        //difference between center and the offset +10 ,-10
-        NSInteger difference = cellCenter - (NSInteger)offset;
-        
-        if(difference > 10 || difference < -10 ){
-            NSLog(@"cell index %i",(int)tempCellNumber);
-            NSLog(@"size it down");
-            [self makeCellSmaller:(NSInteger)tempCellNumber];
-            //self.cellResized = YES;
-        }else{
-            NSLog(@"cell index %i",(int)tempCellNumber);
-            NSLog(@"size it up");
-            
+        if(modulo > 5 && modulo < 33){
+
             [self makeCellBigger:(NSInteger)tempCellNumber];
-            //self.cellResized = NO;
-        }
-        
-        if(tempCellNumber != self.lastResizedCell){
+            [self makeCellSmaller:(NSInteger)tempCellNumber-1];
+            [self makeCellSmaller:(NSInteger)tempCellNumber+1];
+
+        }else{
             
-            self.lastResizedCell = tempCellNumber;
-            //self.cellResized = NO;
+            [self makeCellSmaller:(NSInteger)tempCellNumber];
+
         }
         
     }
@@ -101,33 +94,25 @@
     UIView *contentView = cell.contentView;
     
     UILabel *textLabel = (UILabel*)[contentView viewWithTag:-1];
-    [textLabel setFont:[UIFont fontWithName:@"Helvetica" size:30]];
+    [textLabel setFont:self.selectedFont];
     
 }
 
 -(void)makeCellSmaller:(NSInteger)index{
     
-    UITableViewCell *cell = [_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
-    UIView *contentView = cell.contentView;
+    if(index >=0 && index <= [_tableView numberOfRowsInSection:0]){
+        UITableViewCell *cell = [_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
+        UIView *contentView = cell.contentView;
     
-    UILabel *textLabel = (UILabel*)[contentView viewWithTag:-1];
-    [textLabel setFont:[UIFont fontWithName:@"Helvetica" size:24]];
-    
+        UILabel *textLabel = (UILabel*)[contentView viewWithTag:-1];
+        [textLabel setFont:self.normalFont];
+    }
 }
 
 
 - (void)layoutSubviews {
     [self setBackgroundColor:[UIColor clearColor]];
-    CGFloat rowHeight = [self.delegate rowHeightForIgnitePickerView:self];
-    
-    // Move overlay to center of table view
-    CGFloat centerY = (self.frame.size.height - rowHeight) / 2.0;
-    self.overlayCell.frame = CGRectMake(0.0, centerY, self.frame.size.width, rowHeight);
-    self.overlayTop.frame = CGRectMake(0.0, 0.0, self.frame.size.width, rowHeight);
-    self.overlayBottom.frame = CGRectMake(0.0, 90, self.frame.size.width, rowHeight);
-    
-    
-    
+
     self.lineTop = [[UIView alloc]initWithFrame:CGRectMake(0, 45, 270, 1)];
     self.lineBottom = [[UIView alloc]initWithFrame:CGRectMake(0, 90, 270, 1)];
     
