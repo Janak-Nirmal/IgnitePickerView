@@ -34,6 +34,7 @@
 @property (nonatomic, strong) UIColor *framingColor;
 @property (nonatomic, strong) UIFont  *normalFont;
 @property (nonatomic, strong) UIFont  *selectedFont;
+@property (nonatomic) int *startingRow;
 
 // Delegate
 @property (nonatomic, weak) id <IgnitePickerViewDelegate> delegate;

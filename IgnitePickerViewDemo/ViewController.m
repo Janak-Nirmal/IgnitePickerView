@@ -36,21 +36,28 @@
     [ignitePickerView selectRow:3];
     //--------
     
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    
+    UIImage *btnImage =[[UIImage alloc]init];
+    UIImage *btnImage2 =[[UIImage alloc]init];
+    btnImage = [UIImage imageNamed:@"twitter.png"];
+    btnImage2 = [UIImage imageNamed:@"initeLogo.png"];
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+     button.frame = CGRectMake(60.0, 250.0, 180.0, 80.0);
+    button.layer.borderWidth = 1.0;
+    button.layer.borderColor = [UIColor blackColor].CGColor;
     [button addTarget:self
                action:@selector(tweetMe:)
      forControlEvents:UIControlEventTouchUpInside];
-    [button setTitle:@"Tweet me" forState:UIControlStateNormal];
-    button.frame = CGRectMake(80.0, 210.0, 200.0, 40.0);
+    [button setImage:btnImage forState:UIControlStateNormal];
+   
     
-    UIButton *button2 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    UIButton *button2 = [UIButton buttonWithType:UIButtonTypeCustom];
+    button2.frame = CGRectMake(60.0, 340.0, 180.0, 80.0);
     [button2 addTarget:self
                action:@selector(checkOutMyBlog)
      forControlEvents:UIControlEventTouchUpInside];
-    [button2 setTitle:@"Visit my blog" forState:UIControlStateNormal];
-    button2.frame = CGRectMake(80.0, 310.0, 160.0, 40.0);
+    [button2 setBackgroundImage:btnImage2 forState:UIControlStateNormal];
 
-    
     self.view.backgroundColor = [UIColor colorWithRed:240.0/255.0 green:240.0/255.0 blue:240.0/255.0 alpha:1.0];
 
     [self.view addSubview:ignitePickerView];

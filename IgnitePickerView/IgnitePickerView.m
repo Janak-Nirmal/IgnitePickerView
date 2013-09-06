@@ -34,7 +34,7 @@
         [_tableView setOpaque:YES];
         self.overlayCell = [[UIView alloc] initWithFrame:CGRectMake(0.0, 45.0, self.frame.size.width, 40.0)];
 		self.overlayCell.userInteractionEnabled = NO;
-		
+		self.startingRow = 0;
         
         self.overlayTop = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.frame.size.width, 40.0)];
 		self.overlayTop.userInteractionEnabled = NO;
@@ -71,7 +71,7 @@
         NSInteger cellCenter;
         cellCenter = (NSInteger)tempCellNumber * (NSInteger)rowHeight;
         
-        if(modulo > 5 && modulo < 33){
+        if(modulo > 1 && modulo < 44){
 
             [self makeCellBigger:(NSInteger)tempCellNumber];
             [self makeCellSmaller:(NSInteger)tempCellNumber-1];
@@ -134,7 +134,8 @@
 
 - (void)selectRow:(NSInteger)row {
     CGFloat rowHeight = [self.delegate rowHeightForIgnitePickerView:self];
-    
+    //int *temp =(int*)row;
+    self.startingRow = (int*)row;
 	[_tableView setContentOffset:CGPointMake(0.0, row * rowHeight)];
 }
 
@@ -154,14 +155,14 @@
     
 	static NSString *CellIdentifier = @"Cell";
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
+    UILabel *textLabel;
 	if (cell == nil) {
 		// Alloc a new cell
 		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         
 		UIView *contentView = cell.contentView;
         
-		UILabel *textLabel;
+		
 		if (indexPath.row == 0) {
 			textLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0, self.overlayCell.frame.origin.y, self.frame.size.width, rowHeight)];
 		} else {
@@ -178,7 +179,7 @@
 		// Reuse cell
 		UIView *contentView = cell.contentView;
         
-		UILabel *textLabel = (UILabel*)[contentView viewWithTag:-1];
+		textLabel = (UILabel*)[contentView viewWithTag:-1];
 		textLabel.text = [self.delegate ignitePickerView:self titleForRow:indexPath.row];
 		
 		if (indexPath.row == 0) {
@@ -187,11 +188,14 @@
 			textLabel.frame = CGRectMake(0.0, 0.0, self.frame.size.width, rowHeight);
 		}
 	}
-    //	UIView *backView = [[UIView alloc] initWithFrame:CGRectZero];
+    
+    [textLabel setFont:self.normalFont];
+    if(indexPath.row == self.startingRow){
+        [textLabel setFont:self.selectedFont];
+    }
     cell.backgroundColor = [UIColor clearColor];
     cell.backgroundView = nil;
-    //[self addLoop];
-    //[self magnify];
+
     
 	return cell;
 }
