@@ -53,6 +53,9 @@
     
     UIButton *button2 = [UIButton buttonWithType:UIButtonTypeCustom];
     button2.frame = CGRectMake(60.0, 340.0, 180.0, 80.0);
+    button2.layer.borderWidth = 1.0;
+    button2.layer.borderColor = [UIColor blackColor].CGColor;
+
     [button2 addTarget:self
                action:@selector(checkOutMyBlog)
      forControlEvents:UIControlEventTouchUpInside];

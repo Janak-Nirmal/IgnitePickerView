@@ -2,7 +2,8 @@
 //  IgnitePickerView.m
 //  IgnitePickerViewDemo
 //
-//  Created by Michal on 9/3/13.
+//  Created by Derek Ju.
+//  Modified by Michal on 9/3/13.
 //  Copyright (c) 2013 Michal Lichwa Ignite. All rights reserved.
 //
 
@@ -67,7 +68,7 @@
         NSInteger *tempCellNumber;
         tempCellNumber = (NSInteger*)((NSInteger)offset / (NSInteger)rowHeight);
         float modulo = fmodf(offset, rowHeight);
-        NSLog(@"modulo %f",modulo);
+       // NSLog(@"modulo %f",modulo);
         NSInteger cellCenter;
         cellCenter = (NSInteger)tempCellNumber * (NSInteger)rowHeight;
         
